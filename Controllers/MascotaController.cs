@@ -23,9 +23,15 @@ namespace VeterinariaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Por ahora solo mostramos un mensaje de éxito
-                ViewBag.Mensaje = "Mascota registrada correctamente (funcionalidad básica)";
-                return View(new Mascota());
+                // Asignar ID automático
+                mascota.Id = _mascotas.Count > 0 ? _mascotas.Max(m => m.Id) + 1 : 1;
+                mascota.FechaRegistro = DateTime.Now;
+                
+                // Agregar a la lista
+                _mascotas.Add(mascota);
+                
+                TempData["SuccessMessage"] = $"¡Mascota '{mascota.Nombre}' registrada exitosamente!";
+                return RedirectToAction("Index");
             }
             
             return View(mascota);

@@ -90,4 +90,5 @@ C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\Veterina
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\VeterinariaApp.genruntimeconfig.cache
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\ref\VeterinariaApp.dll
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\VeterinariaApp.sourcelink.json
-C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\a4bz4pxqsh-hro3dbf1yx.gz
+C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\a4bz4pxqsh-0v6zizgzu9.gz
+C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\urlsl1ya9f-56geiw99ah.gz

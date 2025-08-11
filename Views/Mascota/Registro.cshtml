@@ -1,0 +1,82 @@
+@model VeterinariaApp.Models.Mascota
+@{
+    ViewData["Title"] = "Registro de Mascota";
+}
+
+<div class="page-header">
+    <h2>📝 Registro de Nueva Mascota</h2>
+    <a href="/Mascota" class="btn btn-secondary">← Volver a Lista</a>
+</div>
+
+@if (!string.IsNullOrEmpty(ViewBag.Mensaje as string))
+{
+    <div class="alert alert-success">
+        @ViewBag.Mensaje
+    </div>
+}
+
+<div class="form-container">
+    <form asp-action="Registro" method="post" class="registro-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Nombre">Nombre de la Mascota *</label>
+                <input asp-for="Nombre" class="form-control" placeholder="Ej: Firulais" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Especie">Especie *</label>
+                <select asp-for="Especie" class="form-control">
+                    <option value="">Seleccionar especie</option>
+                    <option value="Perro">🐕 Perro</option>
+                    <option value="Gato">🐱 Gato</option>
+                    <option value="Ave">🦜 Ave</option>
+                    <option value="Conejo">🐰 Conejo</option>
+                    <option value="Hamster">🐹 Hamster</option>
+                    <option value="Pez">🐠 Pez</option>
+                    <option value="Otro">🐾 Otro</option>
+                </select>
+                <span asp-validation-for="Especie" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Raza">Raza *</label>
+                <input asp-for="Raza" class="form-control" placeholder="Ej: Labrador" />
+                <span asp-validation-for="Raza" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Edad">Edad (años) *</label>
+                <input asp-for="Edad" type="number" class="form-control" min="0" max="50" />
+                <span asp-validation-for="Edad" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Peso">Peso (kg) *</label>
+                <input asp-for="Peso" type="number" step="0.1" class="form-control" min="0.1" max="200" />
+                <span asp-validation-for="Peso" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Propietario">Nombre del Propietario</label>
+                <input asp-for="Propietario" class="form-control" placeholder="Nombre del dueño" />
+                <span asp-validation-for="Propietario" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                🐾 Registrar Mascota
+            </button>
+            <a href="/Mascota" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script src="~/js/mascota-registro.js"></script>
+}

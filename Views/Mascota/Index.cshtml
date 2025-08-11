@@ -1,0 +1,40 @@
+@model List<VeterinariaApp.Models.Mascota>
+@{
+    ViewData["Title"] = "Lista de Mascotas";
+}
+
+<div class="page-header">
+    <h2>🐾 Lista de Mascotas Registradas</h2>
+    <a href="/Mascota/Registro" class="btn btn-primary">+ Registrar Nueva Mascota</a>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">🐕</div>
+        <h3>No hay mascotas registradas</h3>
+        <p>¡Registra la primera mascota para comenzar!</p>
+        <a href="/Mascota/Registro" class="btn btn-primary">Registrar Mascota</a>
+    </div>
+}
+else
+{
+    <div class="mascotas-grid">
+        @foreach (var mascota in Model)
+        {
+            <div class="mascota-card">
+                <div class="mascota-header">
+                    <h4>@mascota.Nombre</h4>
+                    <span class="mascota-especie">@mascota.Especie</span>
+                </div>
+                <div class="mascota-info">
+                    <p><strong>Raza:</strong> @mascota.Raza</p>
+                    <p><strong>Edad:</strong> @mascota.Edad años</p>
+                    <p><strong>Peso:</strong> @mascota.Peso kg</p>
+                    <p><strong>Propietario:</strong> @mascota.Propietario</p>
+                    <p><strong>Registrado:</strong> @mascota.FechaRegistro.ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+        }
+    </div>
+}

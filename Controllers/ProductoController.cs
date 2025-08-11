@@ -24,9 +24,15 @@ namespace VeterinariaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Por ahora solo mostramos mensaje básico
-                ViewBag.Mensaje = "Producto creado correctamente (funcionalidad básica)";
-                return View(new Producto());
+                // Asignar ID automático
+                producto.Id = _productos.Count > 0 ? _productos.Max(p => p.Id) + 1 : 1;
+                producto.FechaIngreso = DateTime.Now;
+                
+                // Agregar a la lista
+                _productos.Add(producto);
+                
+                TempData["SuccessMessage"] = $"¡Producto '{producto.Nombre}' creado exitosamente!";
+                return RedirectToAction("Index");
             }
             
             return View(producto);

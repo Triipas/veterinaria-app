@@ -24,9 +24,22 @@ namespace VeterinariaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Por ahora solo mostramos mensaje básico
-                ViewBag.Mensaje = "Cliente registrado correctamente (funcionalidad básica)";
-                return View(new Cliente());
+                // Verificar email duplicado
+                if (_clientes.Any(c => c.Email.ToLower() == cliente.Email.ToLower()))
+                {
+                    ModelState.AddModelError("Email", "Ya existe un cliente con este email");
+                    return View(cliente);
+                }
+                
+                // Asignar ID automático
+                cliente.Id = _clientes.Count > 0 ? _clientes.Max(c => c.Id) + 1 : 1;
+                cliente.FechaRegistro = DateTime.Now;
+                
+                // Agregar a la lista
+                _clientes.Add(cliente);
+                
+                TempData["SuccessMessage"] = $"¡Cliente '{cliente.NombreCompleto}' registrado exitosamente!";
+                return RedirectToAction("Index");
             }
             
             return View(cliente);

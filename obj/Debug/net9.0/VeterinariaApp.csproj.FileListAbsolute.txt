@@ -19,7 +19,6 @@ C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\rjimswa.
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\scopedcss\bundle\VeterinariaApp.styles.css
-C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\a4bz4pxqsh-58lsch4suv.gz
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\0m2u8igtjh-61n19gt1b8.gz
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\t2yg7juye7-s2prvnomtd.gz
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\920anyu50q-bqjiyaj88i.gz
@@ -90,3 +89,5 @@ C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\refint\V
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\VeterinariaApp.pdb
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\VeterinariaApp.genruntimeconfig.cache
 C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\ref\VeterinariaApp.dll
+C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\VeterinariaApp.sourcelink.json
+C:\Users\monke\OneDrive\Documentos\waaa\VeterinariaApp\obj\Debug\net9.0\compressed\a4bz4pxqsh-ujxjgjepsx.gz

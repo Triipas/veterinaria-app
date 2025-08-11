@@ -1,0 +1,60 @@
+@model List<VeterinariaApp.Models.Cliente>
+@{
+    ViewData["Title"] = "Directorio de Clientes";
+}
+
+<div class="page-header">
+    <h2>📋 Directorio de Clientes</h2>
+    <a href="/Cliente" class="btn btn-secondary">← Volver a Lista</a>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <h3>No hay clientes en el directorio</h3>
+        <p>Registra clientes para ver el directorio completo</p>
+        <a href="/Cliente/Registrar" class="btn btn-primary">Registrar Cliente</a>
+    </div>
+}
+else
+{
+    <div class="directorio-stats">
+        <div class="stat-card">
+            <div class="stat-number">@Model.Count</div>
+            <div class="stat-label">Total Clientes</div>
+        </div>
+        <div class="stat-card info">
+            <div class="stat-number">@Model.Count(c => c.FechaRegistro >= DateTime.Today.AddDays(-30))</div>
+            <div class="stat-label">Nuevos (30 días)</div>
+        </div>
+    </div>
+
+    <div class="directorio-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Ciudad</th>
+                    <th>Fecha Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cliente in Model.OrderBy(c => c.Apellido).ThenBy(c => c.Nombre))
+                {
+                    <tr>
+                        <td>#@cliente.Id.ToString("D4")</td>
+                        <td><strong>@cliente.NombreCompleto</strong></td>
+                        <td>@cliente.Email</td>
+                        <td>@cliente.Telefono</td>
+                        <td>@cliente.Ciudad</td>
+                        <td>@cliente.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

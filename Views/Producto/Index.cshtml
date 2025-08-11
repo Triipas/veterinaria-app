@@ -1,0 +1,61 @@
+@model List<VeterinariaApp.Models.Producto>
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="page-header">
+    <h2>🛍️ Catálogo de Productos</h2>
+    <div class="header-actions">
+        <a href="/Producto/Inventario" class="btn btn-secondary">📊 Inventario</a>
+        <a href="/Producto/Crear" class="btn btn-primary">+ Nuevo Producto</a>
+    </div>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h3>No hay productos registrados</h3>
+        <p>¡Agrega el primer producto al catálogo!</p>
+        <a href="/Producto/Crear" class="btn btn-primary">Agregar Producto</a>
+    </div>
+}
+else
+{
+    <div class="productos-grid">
+        @foreach (var producto in Model)
+        {
+            <div class="producto-card">
+                <div class="producto-header">
+                    <h4>@producto.Nombre</h4>
+                    <span class="producto-categoria">@producto.Categoria</span>
+                </div>
+                <div class="producto-body">
+                    <p class="producto-descripcion">@producto.Descripcion</p>
+                    <div class="producto-details">
+                        <div class="precio">
+                            <span class="precio-label">Precio:</span>
+                            <span class="precio-valor">$@producto.Precio.ToString("N2")</span>
+                        </div>
+                        <div class="stock @(producto.Stock < 10 ? "stock-bajo" : "")">
+                            <span class="stock-label">Stock:</span>
+                            <span class="stock-valor">@producto.Stock unidades</span>
+                        </div>
+                        @if (!string.IsNullOrEmpty(producto.Marca))
+                        {
+                            <div class="marca">
+                                <span class="marca-label">Marca:</span>
+                                <span class="marca-valor">@producto.Marca</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="producto-footer">
+                    <small class="fecha-ingreso">
+                        Agregado: @producto.FechaIngreso.ToString("dd/MM/yyyy")
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+}

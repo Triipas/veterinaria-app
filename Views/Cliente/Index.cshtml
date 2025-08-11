@@ -1,0 +1,55 @@
+@model List<VeterinariaApp.Models.Cliente>
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="page-header">
+    <h2>👥 Lista de Clientes</h2>
+    <div class="header-actions">
+        <a href="/Cliente/Directorio" class="btn btn-secondary">📋 Directorio</a>
+        <a href="/Cliente/Registrar" class="btn btn-primary">+ Nuevo Cliente</a>
+    </div>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">👥</div>
+        <h3>No hay clientes registrados</h3>
+        <p>¡Registra el primer cliente!</p>
+        <a href="/Cliente/Registrar" class="btn btn-primary">Registrar Cliente</a>
+    </div>
+}
+else
+{
+    <div class="clientes-grid">
+        @foreach (var cliente in Model)
+        {
+            <div class="cliente-card">
+                <div class="cliente-header">
+                    <h4>@cliente.NombreCompleto</h4>
+                    <span class="cliente-id">#@cliente.Id.ToString("D4")</span>
+                </div>
+                <div class="cliente-body">
+                    <div class="cliente-info">
+                        <p><strong>📧 Email:</strong> @cliente.Email</p>
+                        <p><strong>📞 Teléfono:</strong> @cliente.Telefono</p>
+                        @if (!string.IsNullOrEmpty(cliente.Direccion))
+                        {
+                            <p><strong>📍 Dirección:</strong> @cliente.Direccion</p>
+                        }
+                        @if (!string.IsNullOrEmpty(cliente.Ciudad))
+                        {
+                            <p><strong>🏙️ Ciudad:</strong> @cliente.Ciudad</p>
+                        }
+                    </div>
+                </div>
+                <div class="cliente-footer">
+                    <small class="fecha-registro">
+                        Cliente desde: @cliente.FechaRegistro.ToString("dd/MM/yyyy")
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+}

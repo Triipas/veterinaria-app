@@ -1,0 +1,89 @@
+@model List<VeterinariaApp.Models.Producto>
+@{
+    ViewData["Title"] = "Inventario";
+}
+
+<div class="page-header">
+    <h2>📊 Control de Inventario</h2>
+    <a href="/Producto" class="btn btn-secondary">← Volver al Catálogo</a>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">📊</div>
+        <h3>No hay productos en inventario</h3>
+        <p>Agrega productos para controlar el inventario</p>
+        <a href="/Producto/Crear" class="btn btn-primary">Agregar Producto</a>
+    </div>
+}
+else
+{
+    <div class="inventario-stats">
+        <div class="stat-card">
+            <div class="stat-number">@Model.Count</div>
+            <div class="stat-label">Total Productos</div>
+        </div>
+        <div class="stat-card warning">
+            <div class="stat-number">@Model.Count(p => p.Stock < 10)</div>
+            <div class="stat-label">Stock Bajo</div>
+        </div>
+        <div class="stat-card success">
+            <div class="stat-number">@Model.Count(p => p.Stock >= 10)</div>
+            <div class="stat-label">Stock Normal</div>
+        </div>
+        <div class="stat-card info">
+            <div class="stat-number">$@Model.Sum(p => p.Precio * p.Stock).ToString("N2")</div>
+            <div class="stat-label">Valor Total</div>
+        </div>
+    </div>
+
+    <div class="inventario-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Valor Total</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in Model.OrderBy(p => p.Stock))
+                {
+                    <tr class="@(producto.Stock < 10 ? "stock-bajo-row" : "")">
+                        <td>
+                            <strong>@producto.Nombre</strong>
+                            @if (!string.IsNullOrEmpty(producto.Marca))
+                            {
+                                <br><small class="text-muted">@producto.Marca</small>
+                            }
+                        </td>
+                        <td>@producto.Categoria</td>
+                        <td>$@producto.Precio.ToString("N2")</td>
+                        <td class="@(producto.Stock < 10 ? "stock-bajo" : "")">
+                            @producto.Stock
+                        </td>
+                        <td>$@((producto.Precio * producto.Stock).ToString("N2"))</td>
+                        <td>
+                            @if (producto.Stock < 5)
+                            {
+                                <span class="badge badge-danger">Crítico</span>
+                            }
+                            else if (producto.Stock < 10)
+                            {
+                                <span class="badge badge-warning">Bajo</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-success">Normal</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
